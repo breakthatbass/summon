@@ -32,8 +32,7 @@ func callPage(page string) bool {
 func main() {
 
 	if len(os.Args) < 2 {
-		// printUsage()
-		fmt.Println("usage: summon [command] <option>")
+		PrintUsage()
 		os.Exit(1)
 	}
 
@@ -43,10 +42,13 @@ func main() {
 	switch os.Args[1] {
 
 	case "list":
+		e := SmnDirExists()
+		if !e {
+			fmt.Fprintf(os.Stderr, "error: summon pages directory not found\n")
+			fmt.Println("run `summon init` to create it")
+			os.Exit(1)
+		}
 		ListNotes(DEBUG)
-
-	case "help":
-		PrintUsage()
 
 	case "init":
 		e := SmnDirExists()
@@ -64,11 +66,22 @@ func main() {
 	case "version":
 		PrintVersion()
 
+	case "help":
+		PrintUsage()
+
 	default:
+		// search for a page
+		e := SmnDirExists()
+		if !e {
+			fmt.Fprintf(os.Stderr, "error: summon pages directory not found\n")
+			fmt.Println("run `summon init` to create it")
+			os.Exit(1)
+		}
 		err := callPage(os.Args[1])
 		if !err {
 			fmt.Fprintf(os.Stderr, "error: %s is not an avaialble page\n\n\trun `summon add %s` to create it\n", os.Args[1], os.Args[1])
 			os.Exit(1)
 		}
+
 	}
 }

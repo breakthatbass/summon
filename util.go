@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"github.com/muesli/termenv"
@@ -60,25 +59,26 @@ func CreatePagesDir() error {
 	return os.Mkdir(smnDir, 0755)
 }
 
-func ListNotes(DEBUG bool) {
+func ListNotes(DEBUG bool) bool {
 	var path string
 	p := termenv.ColorProfile()
 
 	if DEBUG {
 		path = "pages"
 	} else {
-		home := os.Getenv("HOME")
-		path = fmt.Sprintf("%s/pages", home)
+		//home := os.Getenv("HOME")
+		path = fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	}
 	pages, err := ioutil.ReadDir(path)
 	if err != nil {
-		log.Fatal(err)
+		return false
 	}
 
 	for _, f := range pages {
 		s := termenv.String(f.Name()).Foreground(p.Color(Cmd))
 		fmt.Printf("%s\n", s)
 	}
+	return true
 }
 
 func PrintVersion() {
