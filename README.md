@@ -57,7 +57,19 @@ pypi
 ```
 Then that page can be called with `summon pypi`!  
 
-Pypi is a good example because it's a page that's not on the man pages or `tldr` but is something I need to know how to do occasionally.
+Pypi is a good example because it's a page that's not on the man pages or `tldr` but is something I need to know how to do occasionally.  
+
+It might be helpful to create a script accesible by your `$PATH` to easily create a page from wherever you are in the file system. Here's an option:
+```bash
+#!/bin/bash
+
+if [ "$#" == 0 ]; then
+  exit 1
+fi
+
+vim $HOME/.config/summon/$1
+```
+Replace `vim` with whatever editor you use.
 
 ## Customizing syntax highlighting colors
 There are default colors built in, however, they can be customized through the use of environment variables.  
