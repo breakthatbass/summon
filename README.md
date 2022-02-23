@@ -81,7 +81,7 @@ Define any of these variables with a hex value.
 `SUMMON_CMD_COLOR` - Colors the line containing the command (the tabbed line).  
 `SUMMON_FLAG_COLOR` - colors anything in the line containing the command that starts wth '-' or '<'.  
 
-`summon` usse the [termenv](https://github.com/muesli/termenv) for coloring.
+`summon` uses the [termenv](https://github.com/muesli/termenv) package for coloring. Check it out. It's super cool.
 
 ## Use `summon` with `fzf`
 These days I like to incorporate `fzf` into everything if I can.  
