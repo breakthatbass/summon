@@ -7,6 +7,7 @@ Using things like the [man pages](https://en.wikipedia.org/wiki/Man_page) or [tl
 - Clone it
 - build it (`go build`)
 - `cp summon /usr/local/bin/`
+- `summon init` - create directory to store pages
 
 ## Usage
 ```
