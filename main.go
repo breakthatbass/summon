@@ -58,7 +58,7 @@ func main() {
 				fmt.Printf("error: problem creating pages directory")
 				os.Exit(1)
 			} else {
-				fmt.Printf("Summon pages directory created successfully at %s%s\b", os.Getenv("HOME"), NOTES_PATH)
+				fmt.Printf("Summon pages directory created successfully at %s%s\n\n", os.Getenv("HOME"), NOTES_PATH)
 				fmt.Println("Now create some of your own pages!")
 			}
 		}
