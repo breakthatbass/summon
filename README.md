@@ -67,10 +67,12 @@ Define any of these variables with a hex value.
 `SUMMON_HEADER_COLOR` - Colors the page name and headers.  
 `SUMMON_DESC_COLOR` - Colors the description line (line that starts with '-').  
 `SUMMON_CMD_COLOR` - Colors the line containing the command (the tabbed line).  
-`SUMMON_FLAG_COLOR` - colors anything in the line containing the command that starts wth '-' or '<'.
+`SUMMON_FLAG_COLOR` - colors anything in the line containing the command that starts wth '-' or '<'.  
+
+`summon` usse the [termenv](https://github.com/muesli/termenv) for coloring.
 
 ## Use `summon` with `fzf`
-THese days I like to incorporate `fzf` into everything if I can.  
+These days I like to incorporate `fzf` into everything if I can.  
 
 You can pipe the list of pages into `fzf` with: `summon list | fzf`  
 
