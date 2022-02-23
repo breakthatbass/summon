@@ -59,7 +59,7 @@ Then that page can be called with `summon pypi`!
 
 Pypi is a good example because it's a page that's not on the man pages or `tldr` but is something I need to know how to do occasionally.  
 
-It might be helpful to create a script accesible by your `$PATH` to easily create a page from wherever you are in the file system. Here's an option:
+It might be helpful to create a script accessible by your `$PATH` to easily create a page from wherever you are in the file system. Here's an option:
 ```bash
 #!/bin/bash
 
