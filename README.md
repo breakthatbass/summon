@@ -83,7 +83,7 @@ Define any of these variables with a hex value.
 
 `summon` uses the [termenv](https://github.com/muesli/termenv) package for coloring. Check it out. It's super cool.
 
-## Use `summon` with `fzf`
+## Using `summon` with `fzf`
 These days I like to incorporate `fzf` into everything if I can.  
 
 You can pipe the list of pages into `fzf` with: `summon list | fzf`  
