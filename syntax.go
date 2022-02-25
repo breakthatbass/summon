@@ -10,10 +10,13 @@ const gray = "#B9BFCA"
 const cyan = "#71BEF2"
 
 // strings that will get highlighted
+
 var Header string
 var Desc string
 var Cmd string
 var Flag string
+
+var errStr string
 
 func GetColors() {
 	head := os.Getenv("SUMMON_HEADER_COLOR")

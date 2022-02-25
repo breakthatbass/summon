@@ -13,6 +13,16 @@ const VERSION = "0.0.1"
 // hold all the pages to the notes here
 const NOTES_PATH = "/.config/summon/"
 
+func GetErrColor() termenv.Style {
+	p := termenv.ColorProfile()
+	return termenv.String("error").Foreground(p.Color("#D38384"))
+}
+
+func ColorStr(s string, hex string) termenv.Style {
+	p := termenv.ColorProfile()
+	return termenv.String(s).Foreground(p.Color(hex))
+}
+
 /**
  * getPath
  *

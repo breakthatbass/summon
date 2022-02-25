@@ -8,6 +8,9 @@ import (
 
 const DEBUG = false
 
+// color for printing "error"
+const errorColor = "#D38384"
+
 /**
  * callPage
  *
@@ -47,14 +50,15 @@ func main() {
 
 	// get syntax highlight colors
 	GetColors()
+	errStr := ColorStr("error", errorColor)
 
 	switch os.Args[1] {
 
 	case "list":
 		e := SmnDirExists()
 		if !e {
-			fmt.Fprintf(os.Stderr, "error: summon pages directory not found\n")
-			fmt.Println("run `summon init` to create it")
+			fmt.Fprintf(os.Stderr, "%s: summon pages directory not found\n", errStr)
+			fmt.Printf("\nrun %s to create it\n", ColorStr("summon init", Cmd))
 			os.Exit(1)
 		}
 		ListNotes(DEBUG)
@@ -64,10 +68,10 @@ func main() {
 		if !e {
 			err := CreatePagesDir()
 			if err != nil {
-				fmt.Printf("error: problem creating pages directory")
+				fmt.Printf("%s: problem creating pages directory", errStr)
 				os.Exit(1)
 			} else {
-				fmt.Printf("Summon pages directory created successfully at %s%s\n\n", os.Getenv("HOME"), NOTES_PATH)
+				fmt.Printf("Summon pages directory created successfully at %s%s\n\n", ColorStr(os.Getenv("HOME"), Cmd), ColorStr(NOTES_PATH, Cmd))
 				fmt.Println("Now create some of your own pages!")
 			}
 		}
@@ -82,14 +86,14 @@ func main() {
 		// search for a page
 		e := SmnDirExists()
 		if !e {
-			fmt.Fprintf(os.Stderr, "error: summon page directory not found\n")
-			fmt.Println("run `summon init` to create it")
+			fmt.Fprintf(os.Stderr, "%s: summon page directory not found\n", errStr)
+			fmt.Println("run %s to create it", ColorStr("summon init", Cmd))
 			os.Exit(1)
 		}
 		err := callPage(os.Args[1])
 		if !err {
-			fmt.Fprintf(os.Stderr, "error: %s is not an avaialble page\n\n", os.Args[1])
-			fmt.Printf("add it as $HOME/.config/summon/%s if you want to create it as a sumon page\n", os.Args[1])
+			fmt.Fprintf(os.Stderr, "%s: %s is not an avaialble page\n\n", errStr, os.Args[1])
+			fmt.Printf("add it as %s%s if you want to create it as a sumon page\n", ColorStr("$HOME/.config/summon/", Cmd), ColorStr(os.Args[1], Cmd))
 			os.Exit(1)
 		}
 
