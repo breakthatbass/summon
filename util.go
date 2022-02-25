@@ -13,11 +13,16 @@ const VERSION = "0.0.1"
 // hold all the pages to the notes here
 const NOTES_PATH = "/.config/summon/"
 
-func GetErrColor() termenv.Style {
-	p := termenv.ColorProfile()
-	return termenv.String("error").Foreground(p.Color("#D38384"))
-}
-
+/**
+ * ColorStr
+ *
+ * @desc: colorize `s` with `hex` color.
+ *
+ * @param: `s` string to colorize.
+ * @param: `hex` hex color
+ *
+ * @return: `s` colored with `hex`.
+ **/
 func ColorStr(s string, hex string) termenv.Style {
 	p := termenv.ColorProfile()
 	return termenv.String(s).Foreground(p.Color(hex))
@@ -26,11 +31,11 @@ func ColorStr(s string, hex string) termenv.Style {
 /**
  * getPath
  *
- * get the file path to the desired note
+ * @desc: build the file path to the desired page
  *
- * noteFile: the note to check
+ * @param: `page` - the note to check
  *
- * returns: path to noteFile
+ * @return: path to paege
  **/
 func GetPath(page string, DEBUG bool) string {
 	if DEBUG {
@@ -38,12 +43,18 @@ func GetPath(page string, DEBUG bool) string {
 	} else {
 		path := os.Getenv("HOME")
 
-		// this should like something like '~/.config/summon/note-to-view
+		// this should like something like '~/.config/summon/pagename
 		return fmt.Sprintf("%s%s%s", path, NOTES_PATH, page)
 	}
 }
 
-// check for directory
+/**
+ * SmnDirExists
+ *
+ * @desc: check if `$HOME/.config/summon` exists
+ *
+ * @return - `true` if it exists, else `false`.
+ */
 func SmnDirExists() bool {
 	var smnDir string
 	if DEBUG {
@@ -58,7 +69,13 @@ func SmnDirExists() bool {
 	return true
 }
 
-// create directory
+/**
+ * CreatePagesDir
+ *
+ * @desc: create `$HOME/.config/summon`
+ *
+ * @return: error else nil
+ */
 func CreatePagesDir() error {
 	var smnDir string
 	if DEBUG {
@@ -69,6 +86,15 @@ func CreatePagesDir() error {
 	return os.Mkdir(smnDir, 0755)
 }
 
+/**
+ * ListNotes
+ *
+ * @desc: list all summon pages in summon directory
+ *
+ * @param: `DEBUG` - global debug constant.
+ *
+ * @return: `true` if successful, else `false` if error reading directory.
+ */
 func ListNotes(DEBUG bool) bool {
 	var path string
 	p := termenv.ColorProfile()
