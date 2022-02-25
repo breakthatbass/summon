@@ -8,6 +8,15 @@ import (
 
 const DEBUG = false
 
+/**
+ * callPage
+ *
+ * @desc: attempt to read and print a summon page.
+ *
+ * @param: `page` the name of the summon page to call.
+ *
+ * @return: `true` is page is found. `false` if page is not found.
+ */
 func callPage(page string) bool {
 
 	pagePath := GetPath(page, DEBUG)
@@ -73,13 +82,14 @@ func main() {
 		// search for a page
 		e := SmnDirExists()
 		if !e {
-			fmt.Fprintf(os.Stderr, "error: summon pages directory not found\n")
+			fmt.Fprintf(os.Stderr, "error: summon page directory not found\n")
 			fmt.Println("run `summon init` to create it")
 			os.Exit(1)
 		}
 		err := callPage(os.Args[1])
 		if !err {
-			fmt.Fprintf(os.Stderr, "error: %s is not an avaialble page\n\n\trun `summon add %s` to create it\n", os.Args[1], os.Args[1])
+			fmt.Fprintf(os.Stderr, "error: %s is not an avaialble page\n\n", os.Args[1])
+			fmt.Printf("add it as $HOME/.config/summon/%s if you want to create it as a sumon page\n", os.Args[1])
 			os.Exit(1)
 		}
 
