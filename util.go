@@ -38,14 +38,12 @@ func ColorStr(s string, hex string) termenv.Style {
  * @return: path to paege
  **/
 func GetPath(page string, DEBUG bool) string {
+	path := os.Getenv("HOME")
 	if DEBUG {
 		return fmt.Sprintf("pages/%s", page)
-	} else {
-		path := os.Getenv("HOME")
-
-		// this should like something like '~/.config/summon/pagename
-		return fmt.Sprintf("%s%s%s", path, NOTES_PATH, page)
 	}
+	// this should like something like '~/.config/summon/pagename
+	return fmt.Sprintf("%s%s%s", path, NOTES_PATH, page)
 }
 
 /**
@@ -56,11 +54,10 @@ func GetPath(page string, DEBUG bool) string {
  * @return - `true` if it exists, else `false`.
  */
 func SmnDirExists() bool {
-	var smnDir string
+	//var smnDir string
+	smnDir := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	if DEBUG {
 		smnDir = "pages"
-	} else {
-		smnDir = fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	}
 	_, err := os.Stat(smnDir)
 	if os.IsNotExist(err) {
@@ -77,11 +74,9 @@ func SmnDirExists() bool {
  * @return: error else nil
  */
 func CreatePagesDir() error {
-	var smnDir string
+	smnDir := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	if DEBUG {
 		smnDir = "pages"
-	} else {
-		smnDir = fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	}
 	return os.Mkdir(smnDir, 0755)
 }
@@ -96,14 +91,11 @@ func CreatePagesDir() error {
  * @return: `true` if successful, else `false` if error reading directory.
  */
 func ListNotes(DEBUG bool) bool {
-	var path string
 	p := termenv.ColorProfile()
+	path := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 
 	if DEBUG {
 		path = "pages"
-	} else {
-		//home := os.Getenv("HOME")
-		path = fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	}
 	pages, err := ioutil.ReadDir(path)
 	if err != nil {
