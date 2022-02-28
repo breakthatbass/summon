@@ -93,7 +93,7 @@ func main() {
 		err := callPage(os.Args[1])
 		if !err {
 			fmt.Fprintf(os.Stderr, "%s: %s is not an avaialble page\n\n", errStr, os.Args[1])
-			fmt.Printf("add it as %s%s if you want to create it as a sumon page\n", ColorStr("$HOME/.config/summon/", Cmd), ColorStr(os.Args[1], Cmd))
+			fmt.Printf("add it as %s%s if you want to create it as a summon page\n", ColorStr("$HOME/.config/summon/", Cmd), ColorStr(os.Args[1], Cmd))
 			os.Exit(1)
 		}
 
