@@ -59,7 +59,7 @@ Then that page can be called with `summon pypi`!
 
 Pypi is a good example because it's a page that's not on the man pages or `tldr` but is something I need to know how to do occasionally.  
 
-It might be helpful to create a script accessible by your `$PATH` to easily create a page from wherever you are in the file system. Here's an option:
+It might be helpful to create a script accessible by your `$PATH` like `/usr/local/bin/` to easily create a page from wherever you are in the file system. Here's an option:
 ```bash
 #!/bin/bash
 
@@ -69,7 +69,7 @@ fi
 
 vim $HOME/.config/summon/$1
 ```
-Replace `vim` with whatever editor you use.
+Replace `vim` with whatever editor you use. See [`scripts/spage`](https://github.com/breakthatbass/summon/blob/main/scripts/spage) for this script.
 
 ## Customizing syntax highlighting colors
 There are default colors built in, however, they can be customized through the use of environment variables.  
@@ -100,7 +100,7 @@ else
   summon "$d"
 fi
 ```
-
+See [`scripts/szf`](https://github.com/breakthatbass/summon/blob/main/scripts/szf) for this script. Put it somewhere on your `$PATH` like `/usr/local/bin/` to use it.
 
 ## Contributing
 Feel free to make a pull request or open an issue if you find a bug.
