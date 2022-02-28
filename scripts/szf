@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# run summon with fzf to pick a page
+#
+# usage: szf
+
+d=$(summon list | fzf)
+
+if [[ "$d" == '' ]]; then
+  exit 0
+else
+  summon "$d"
+fi
+
