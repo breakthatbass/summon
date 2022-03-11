@@ -1,0 +1,13 @@
+fzf - a command line fuzzy finder
+
+- list all files and files in subdirectories
+	fzf
+
+- use only exact matches
+	fzf -e
+
+- exact matches if you didn't use the `-e` flag
+	'<search_term>
+
+- find a file and open in vim
+	vim -o `fzf

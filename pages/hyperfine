@@ -1,0 +1,14 @@
+hyperfine
+	a command line benchmarking tool
+
+- basic usage
+	hyperfine 'command arg1 arg2'
+
+- run with warm up runs
+	hyperfine --warmup 10 'command arg1 arg2'
+
+- dictate minimum amount of runs
+	hyperfine --min-runs 30 'command'
+
+- compare two commands
+	hyperfine 'cmd1 arg' 'cmd2 arg'

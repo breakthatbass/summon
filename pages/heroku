@@ -1,0 +1,36 @@
+heroku
+
+- download heroku cli
+    brew tap heroku/brew && brew install heroku
+
+- login to use the cli
+    heroku login
+
+- create a new project
+    heroku create <project-name>
+
+- add a postgresql database
+    heroku addons:create heroku-postgresql:hobby-dev --app <project-name>
+
+- make a requirements.txt file
+    pip freeze > requirements.txt
+
+- create a Procfile and add app name
+    echo "web: gunicorn app:<app-name>" > Procfile
+
+- create a runtime.txt file to say python verison
+    echo "python-3.9.8" > runtime.txt
+
+- next step: git init, git add ., and git commit
+
+- initialize repo to remote heroku repo
+    heroku git:remote -a <project-name>
+
+- push to remote repo
+    git push heroku master
+
+- run python shell on heroku server
+    heroku run python
+
+- login to remote db
+    heroku pg:psql --app <project-name>

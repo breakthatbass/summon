@@ -1,0 +1,7 @@
+ag
+
+- search for a string in a file
+	ag <string> <path/to/file>
+
+- search for a string in all relative files
+	ag <string> *

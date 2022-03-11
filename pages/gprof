@@ -1,0 +1,10 @@
+gprof
+
+- compiling program - use -pg
+    gcc myprog.c -pg
+
+- run program normally
+    ./a.out
+
+- run the profiler
+    gprof ./a.out [gmon.out]

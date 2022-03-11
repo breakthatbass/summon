@@ -1,0 +1,14 @@
+rust
+
+- create a project (and generate a dir)
+	cargo new <project-name>
+
+- adding dependencies...
+- add to Cargo.toml file then
+	cargo build
+
+- compile and run a program
+	cargo run
+
+- run tests
+	cargo test

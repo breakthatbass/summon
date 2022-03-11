@@ -1,0 +1,13 @@
+go
+
+- init a go module
+	go mod init <dir/pkg>
+
+- compile a go program
+	go build
+
+- run a go program
+	go run . or ./executable
+
+- run the linter
+	golangci-lint run

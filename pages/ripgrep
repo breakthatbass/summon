@@ -1,0 +1,10 @@
+rg - ripgrep
+
+- search for a string in a file(s)
+	rg string path/to/file
+
+- search for a string in all files
+	rg string
+
+- search for a string and replace all instances of it
+	rg string path/to/file -r <new-string>

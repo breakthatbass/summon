@@ -1,0 +1,14 @@
+fgets() - read a char from a file stream
+
+- API
+    int fgetc(FILE *stream);
+
+- RETURN VALUE
+    returns char that was read or EOF
+
+- include
+    #include <stdio.h>
+
+- example - read file char by char
+    while((c = fgetc(fp)) != EOF)
+        printf("%c", c);
