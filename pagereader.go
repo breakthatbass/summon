@@ -14,9 +14,14 @@ func checkCmd(line string) []termenv.Style {
 	splitWords := strings.Split(line, " ")
 	n := len(splitWords)
 	termarr := make([]termenv.Style, n)
+	inComment := false
 
 	for i := 0; i < n; i++ {
-		if strings.HasPrefix(splitWords[i], "-") || strings.HasPrefix(splitWords[i], "<") {
+		if splitWords[i] == "#" || strings.HasPrefix(splitWords[i], "#") || inComment {
+			// comment - gray out the rest of the line
+			termarr[i] = termenv.String(splitWords[i]).Foreground(p.Color(Comment))
+			inComment = true
+		} else if strings.HasPrefix(splitWords[i], "-") || strings.HasPrefix(splitWords[i], "<") {
 			termarr[i] = termenv.String(splitWords[i]).Foreground(p.Color(Flag))
 		} else {
 			termarr[i] = termenv.String(splitWords[i]).Foreground(p.Color(Cmd))
