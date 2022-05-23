@@ -75,6 +75,33 @@ func main() {
 				fmt.Println("Now create some of your own pages!")
 			}
 		}
+	
+	case "add":
+		if len(os.Args) >= 3 {
+			err := AddEditPage(os.Args[2], "add", DEBUG)
+			if err != nil {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Fprintf(os.Stderr, 
+				"%s: provide a page name to add\n\n\t%s\n", 
+				errStr, 
+				ColorStr("summon add <page-name>", Cmd))
+		}
+
+	case "edit":
+		if len(os.Args) >= 3 {
+			err := AddEditPage(os.Args[2], "edit", DEBUG)
+			if err != nil {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Fprintf(os.Stderr, 
+				"%s: provide a page name to edit\n\n\t%s\n", 
+				errStr, 
+				ColorStr("summon edit <page-name>", Cmd))
+		}
+
 
 	case "version":
 		PrintVersion()

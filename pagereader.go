@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
+	"os"
+	"os/exec"
 
 	"github.com/muesli/termenv"
 )
@@ -58,4 +60,53 @@ func CheckLine(line string) {
 		}
 		fmt.Printf("\n")
 	}
+}
+
+
+// open a text editor to edit a page
+// TODO add template page to open up to for new page
+func AddEditPage(page string, todo string, DEBUG bool) error {
+
+	// get path to page
+	p := GetPath(page, DEBUG)
+	var err error
+	err = nil
+
+	// does that page exist?
+	if _, err := os.Stat(p); err == nil {
+		// page exists
+		if todo == "add" {
+			// if page exists already but we're trying to add it...
+			return fmt.Errorf("page '%s' doesn't exist.\nTry adding it instead.\n\n\t%s %s\n",
+								page, 
+								ColorStr("summon edit", Cmd),
+								ColorStr(page, Cmd))
+		}
+	} else {
+		if todo == "edit" {
+			// if page doesn't exist but we're trying to edit it...
+			return fmt.Errorf("page '%s' doesn't exist.\nTry adding it instead.\n\n\t%s %s\n",
+								page, 
+								ColorStr("summon add", Cmd),
+								ColorStr(page, Cmd))
+		}
+	}
+
+	editor := os.Getenv("EDITOR")
+	if editor == "" {
+		err = fmt.Errorf("EDITOR global variable not found. Defaulting to nano")
+		editor = "usr/bin/nano"
+	}
+
+	// TODO when template page is implemented,
+	// copy that page to this new page
+	// then open it
+
+	// run exec on opening that file with editor
+	cmd := exec.Command(editor, p)
+	cmd.Stdout = os.Stdout
+	cmd.Stdin = os.Stdin
+	cmd.Stderr = cmd.Stderr
+	cmd.Run()
+	return err
 }
