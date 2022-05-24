@@ -11,7 +11,10 @@ import (
 const VERSION = "0.0.1"
 
 // hold all the pages to the notes here
-const NOTES_PATH = "/.config/summon/"
+const NOTES_PATH = "/.config/summon/pages/"
+const DEBUG_PATH = "debug_summon/pages/"
+
+
 
 /**
  * ColorStr
@@ -40,7 +43,7 @@ func ColorStr(s string, hex string) termenv.Style {
 func GetPath(page string, DEBUG bool) string {
 	path := os.Getenv("HOME")
 	if DEBUG {
-		return fmt.Sprintf("pages/%s", page)
+		return fmt.Sprintf("%s%s", DEBUG_PATH, page)
 	}
 	// this should like something like '~/.config/summon/pagename
 	return fmt.Sprintf("%s%s%s", path, NOTES_PATH, page)
@@ -57,7 +60,7 @@ func SmnDirExists() bool {
 	//var smnDir string
 	smnDir := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	if DEBUG {
-		smnDir = "pages"
+		smnDir = DEBUG_PATH
 	}
 	_, err := os.Stat(smnDir)
 	if os.IsNotExist(err) {
@@ -73,12 +76,12 @@ func SmnDirExists() bool {
  *
  * @return: error else nil
  */
-func CreatePagesDir() error {
+func CreatePagesDir(DEBUG bool) error {
 	smnDir := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 	if DEBUG {
-		smnDir = "pages"
+		smnDir = DEBUG_PATH
 	}
-	return os.Mkdir(smnDir, 0755)
+	return os.MkdirAll(smnDir, 0755)
 }
 
 /**
@@ -95,7 +98,7 @@ func ListNotes(DEBUG bool) bool {
 	path := fmt.Sprintf("%s%s", os.Getenv("HOME"), NOTES_PATH)
 
 	if DEBUG {
-		path = "pages"
+		path = DEBUG_PATH
 	}
 	pages, err := ioutil.ReadDir(path)
 	if err != nil {

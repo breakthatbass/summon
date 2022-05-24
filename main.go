@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const DEBUG = false
+const DEBUG = true
 
 // color for printing "error"
 const errorColor = "#D38384"
@@ -66,7 +66,7 @@ func main() {
 	case "init":
 		e := SmnDirExists()
 		if !e {
-			err := CreatePagesDir()
+			err := CreatePagesDir(DEBUG)
 			if err != nil {
 				fmt.Printf("%s: problem creating pages directory", errStr)
 				os.Exit(1)
