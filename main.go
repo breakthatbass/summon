@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const DEBUG = true
+const DEBUG = false
 
 // color for printing "error"
 const errorColor = "#D38384"
