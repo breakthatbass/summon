@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"strings"
 	"unicode"
@@ -62,7 +63,8 @@ func CheckLine(line string) {
 	}
 }
 
-
+// write this template page string a any new page opened with `summon add`
+const pageTemplate = "page template: title/header\n\n- description of something to remember (start with a '-')\n\tthe command or line of code (start this line with a tab(\\t))\n\t# add comments like this"
 // open a text editor to edit a page
 // TODO add template page to open up to for new page
 func AddEditPage(page string, todo string, DEBUG bool) error {
@@ -95,12 +97,20 @@ func AddEditPage(page string, todo string, DEBUG bool) error {
 	editor := os.Getenv("EDITOR")
 	if editor == "" {
 		err = fmt.Errorf("EDITOR global variable not found. Defaulting to nano")
-		editor = "usr/bin/nano"
+		editor = "/usr/bin/nano"
 	}
 
-	// TODO when template page is implemented,
-	// copy that page to this new page
-	// then open it
+	// write template string to new page
+	fp, err := os.Create(p)
+    if err != nil {
+        return err
+    }
+    w := bufio.NewWriter(fp)
+	_, err = w.WriteString(pageTemplate)
+	if err != nil {
+		return err
+	}
+	w.Flush()
 
 	// run exec on opening that file with editor
 	cmd := exec.Command(editor, p)
