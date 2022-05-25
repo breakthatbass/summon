@@ -1,8 +1,0 @@
-python
-	some python stuff i want to remember
-
-- set up a virtual environment
-	python3 -m venv venv
-
-- activate the virtual envronment
-	. venv/bin/activate

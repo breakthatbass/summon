@@ -1,8 +1,0 @@
-diskus
-	du -sh
-
-- get size of current directory
-	diskus
-
-- get size of specific directoryi/file
-	diskus path/to/dir-file

@@ -1,7 +1,0 @@
-fd
-
-- search for all files with extension
-	fd -e .ext
-
-- search for a file
-	fd -t f file.ext
